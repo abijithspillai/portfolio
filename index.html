@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home — Portfolio</title>
+  <link rel="icon" type="image/png" href="https://img.icons8.com/?size=100&id=2797&format=png&color=000000">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional styles for the hero section */
+    .hero {
+      text-align: center;
+      padding: 60px 0;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem); /* Responsive font size */
+      margin-bottom: 8px;
+      color: #ffffff; /* This line ensures 'Hi, I'm' is white */
+    }
+    .hero h1 .highlight {
+      color: var(--red);
+    }
+    .hero .subtitle {
+      font-size: clamp(1.2rem, 4vw, 1.75rem);
+      font-weight: 600;
+      color: #ffffff;
+      margin: 10px 0;
+    }
+    .hero .tagline {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 10px auto 30px;
+      line-height: 1.6;
+    }
+    .cta {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .skills-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .skill {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-row">
+      <a class="logo" href="index.html">My Portfolio</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="certificates.html">Certificates</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1 id="display-name">Hi, I'm <span class="highlight">ABIJITH S PILLAI</span></h1>
+      <p class="subtitle">Web Developer & AI Enthusiast</p>
+      <p class="tagline">
+        Welcome to my digital portfolio. Here you can explore my projects, and reach out to me directly.
+      </p>
+      <div class="cta">
+        <a class="btn" href="projects.html">View Projects</a>
+        <a class="btn outline" href="contact.html">Get In Touch</a>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2>About Me</h2>
+      <div class="card" style="margin-top:12px; text-align: left;">
+        <p style="margin:0; color:var(--muted)">
+          As an aspiring software developer currently pursuing a B.Tech in Computer Science and Engineering, I'm driven by a passion for continuous learning and applying new technologies to solve real-world problems. My hands-on experience includes foundational languages like C, Python, and Java, alongside web development with HTML, CSS, and JavaScript. I'm actively seeking opportunities to contribute to challenging projects and grow as a developer.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills">
+        <h2>Key Skills</h2>
+        <div class="skills-pills">
+            <span class="skill">Python</span>
+            <span class="skill">Java</span>
+            <span class="skill">C</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">HTML5</span>
+            <span class="skill">CSS3</span>
+            <span class="skill">Firebase</span>
+            <span class="skill">Git & GitHub</span>
+            <span class="skill">Web Development</span>
+            <span class="skill">AI/ML Concepts</span>
+        </div>
+    </section>
+  </main>
+
+  <footer class="container">
+  </br></br>
+    <div class="muted">&copy; <span id="year"></span> abijithspillai</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

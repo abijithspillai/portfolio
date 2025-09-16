@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Portfolio</title>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/?size=100&id=58808&format=png&color=000000">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .grid {
+            display: flex;
+            flex-direction: column;
+            gap: 25px; 
+        }
+
+        .card {
+            display: flex;
+            align-items: flex-start;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px; 
+            overflow: hidden;
+            background-color: #1a1a1a;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 76, 76, 0.2); 
+        }
+
+        .card img {
+            width: 280px; 
+            height: 100%;
+            object-fit: cover;
+            border-right: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+
+        .card-info {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .card-info h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: var(--red);
+        }
+        
+        .card-info .date {
+            color: #aaa;
+            font-size: 0.9em;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .card-info .description {
+            color: #ddd;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .card-info .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: auto; 
+        }
+
+        .placeholder, .empty-state {
+            background-color: #1a1a1a;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                flex-direction: column;
+            }
+            .card img {
+                width: 100%;
+                height: 200px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .card-info {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-row">
+            <a class="logo" href="index.html">My Portfolio</a>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="projects.html" class="active">Projects</a>
+                <a href="certificates.html">Certificates</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>My Projects</h1>
+        <div class="grid" id="projects-list">
+            <div class="card placeholder">
+                <h3>Loading your amazing projects...</h3>
+                <p>Please wait a moment.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container">
+        <div class="muted">&copy; <span id="year"></span> abijithspillai</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBeKjFZrdhSP4SiBti3uDF_vkNB4aksn9k",
+            authDomain: "add-project-c397e.firebaseapp.com",
+            projectId: "add-project-c397e",
+            storageBucket: "add-project-c397e.appspot.com",
+            messagingSenderId: "611618368647",
+            appId: "1:611618368647:web:f0d85267fb930e27ae9c22"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        function formatMonthYear(isoDate) {
+            if (!isoDate || !isoDate.includes('-')) return isoDate;
+            const [year, month] = isoDate.split('-');
+            const dateObj = new Date(year, month - 1);
+            return dateObj.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+        }
+
+        async function loadProjects() {
+            const projectsRef = collection(db, "projects");
+            const q = query(projectsRef, orderBy("date", "desc"));
+            const container = document.getElementById("projects-list");
+            
+            try {
+                const snapshot = await getDocs(q);
+                
+                container.innerHTML = ''; 
+
+                if (snapshot.empty) {
+                    container.innerHTML = '<div class="empty-state"><h3>No Projects Yet!</h3><p>I am currently working on new and exciting projects. Please check back soon!</p></div>';
+                    return;
+                }
+
+                snapshot.forEach(doc => {
+                    const p = doc.data();
+                    const card = document.createElement("div");
+                    card.className = "card"; 
+
+                    card.innerHTML = `
+                        <img src="${p.thumbnail}" alt="${p.name} thumbnail">
+                        <div class="card-info">
+                            <div>
+                                <h3>${p.name}</h3>
+                                <small class="date">${formatMonthYear(p.date)}</small>
+                                <p class="description">${p.description}</p>
+                            </div>
+                            <div class="buttons">
+                                ${p.projectLink ? `<a href="${p.projectLink}" target="_blank" class="btn">View Project</a>` : ""}
+                                ${p.sourceLink ? `<a href="${p.sourceLink}" target="_blank" class="btn outline">View Source</a>` : ""}
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error("Error loading projects:", error);
+                container.innerHTML = '<div class="empty-state"><h3>Oops!</h3><p>There was an error loading projects. Please try refreshing the page.</p></div>';
+            }
+        }
+
+        loadProjects();
+    </script>
+</body>
+</html>
