@@ -6,6 +6,7 @@
     <title>Home — Portfolio</title>
     <link rel="icon" type="image/png" href="https://img.icons8.com/?size=100&id=2797&format=png&color=000000">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <style>
         .hero {
             text-align: center;
@@ -94,58 +95,58 @@
         </section>
 
         <section id="about" class="about">
-            <h2>About Me</h2>
-            <div class="card" style="margin-top:12px; text-align: left;">
+            <h2 data-aos="fade-up">About Me</h2>
+            <div class="card" data-aos="fade-up" style="margin-top:12px; text-align: left;">
                 <p style="margin:0; color:var(--muted)">
                     As an aspiring software developer currently pursuing a B.Tech in Computer Science and Engineering, I'm driven by a passion for continuous learning and applying new technologies to solve real-world problems. My hands-on experience includes foundational languages like C, Python, and Java, alongside web development with HTML, CSS, and JavaScript. I'm actively seeking opportunities to contribute to challenging projects and grow as a developer.
                 </p>
             </div>
         </section>
 
-        <section id="skills">
-            <h2>Key Skills</h2>
-            <div class="skills-pills">
-                <div class="skill">
+         <section id="skills">
+            <h2 data-aos="fade-up">Key Skills</h2>
+            <div class="skills-pills" data-aos="fade-up">
+                <div class="skill" data-aos="zoom-in">
                     <img src="https://cdn.simpleicons.org/python" alt="Python logo">
                     <span>Python</span>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="zoom-in" data-aos-delay="50">
                     <img src="https://img.icons8.com/?size=100&id=13679&format=png&color=000000" alt="Java logo">
                     <span>Java</span>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="zoom-in" data-aos-delay="100">
                     <img src="https://cdn.simpleicons.org/c" alt="C logo">
                     <span>C</span>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="zoom-in" data-aos-delay="150">
                     <img src="https://cdn.simpleicons.org/javascript" alt="JavaScript logo">
                     <span>JavaScript</span>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="zoom-in" data-aos-delay="200">
                     <img src="https://cdn.simpleicons.org/html5" alt="HTML5 logo">
                     <span>HTML5</span>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="zoom-in" data-aos-delay="250">
                     <img src="https://img.icons8.com/?size=100&id=21278&format=png&color=000000" alt="CSS3 logo">
                     <span>CSS3</span>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="zoom-in" data-aos-delay="300">
                     <img src="https://cdn.simpleicons.org/firebase" alt="Firebase logo">
                     <span>Firebase</span>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="zoom-in" data-aos-delay="350">
                     <img src="https://cdn.simpleicons.org/git" alt="Git logo">
                     <span>Git</span>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="zoom-in" data-aos-delay="400">
                     <img src="https://cdn.simpleicons.org/github" alt="GitHub logo">
                     <span>GitHub</span>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="zoom-in" data-aos-delay="450">
                     <img src="https://img.icons8.com/fluency/48/domain.png" alt="Web Development icon">
                     <span>Web Development</span>
                 </div>
-                <div class="skill">
+                <div class="skill" data-aos="zoom-in" data-aos-delay="500">
                     <img src="https://img.icons8.com/fluency/48/artificial-intelligence.png" alt="AI/ML icon">
                     <span>AI/ML Concepts</span>
                 </div>
@@ -158,6 +159,13 @@
         <div class="muted">&copy; <span id="year"></span> abijithspillai</div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
