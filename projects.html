@@ -15,19 +15,13 @@
 
         .card {
             display: flex;
-            align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px; 
+            align-items: stretch;
             overflow: hidden;
-            background-color: #1a1a1a;
             color: white;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 0;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(255, 76, 76, 0.2); 
         }
 
         .card img {
@@ -168,6 +162,11 @@
                     const p = doc.data();
                     const card = document.createElement("div");
                     card.className = "card"; 
+                    card.setAttribute("data-tilt", "");
+                    card.setAttribute("data-tilt-max", "5");
+                    card.setAttribute("data-tilt-speed", "400");
+                    card.setAttribute("data-tilt-glare", "true");
+                    card.setAttribute("data-tilt-max-glare", "0.2");
 
                     card.innerHTML = `
                         <img src="${p.thumbnail}" alt="${p.name} thumbnail">
@@ -189,10 +188,16 @@
                 console.error("Error loading projects:", error);
                 container.innerHTML = '<div class="empty-state"><h3>Oops!</h3><p>There was an error loading projects. Please try refreshing the page.</p></div>';
             }
+            
+            // Initialize VanillaTilt if loaded after elements
+            if (window.VanillaTilt) {
+                VanillaTilt.init(document.querySelectorAll(".card"));
+            }
         }
 
         loadProjects();
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="3d-bg.js"></script>
 </body>

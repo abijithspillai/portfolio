@@ -5,65 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Home — Portfolio</title>
     <link rel="icon" type="image/png" href="https://img.icons8.com/?size=100&id=2797&format=png&color=000000">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <style>
         .hero {
             text-align: center;
-            padding: 60px 0;
+            padding: 100px 0 80px;
         }
         .hero h1 {
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            margin-bottom: 8px;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 12px;
             color: #ffffff;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
         .hero h1 .highlight {
-            color: var(--red);
+            background: linear-gradient(135deg, #e50914, #ff5e62);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(229, 9, 20, 0.3);
+        }
+        .subtitle-wrapper {
+            display: inline-block;
         }
         .hero .subtitle {
             font-size: clamp(1.2rem, 4vw, 1.75rem);
             font-weight: 600;
-            color: #ffffff;
+            color: #e0e0e0;
             margin: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid var(--red);
+            animation: typing 3s steps(30, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--red); }
         }
         .hero .tagline {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--muted);
             max-width: 600px;
-            margin: 10px auto 30px;
+            margin: 20px auto 40px;
             line-height: 1.6;
+            font-weight: 300;
         }
         .cta {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
         }
         .skills-pills {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 12px;
-            margin-top: 12px;
+            gap: 15px;
+            margin-top: 30px;
         }
         .skill {
             display: flex;
             align-items: center;
             gap: 12px;
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--muted);
-            padding: 8px 16px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background-color 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .skill:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px) scale(1.05);
+            background: rgba(229, 9, 20, 0.1);
+            border-color: rgba(229, 9, 20, 0.5);
+            box-shadow: 0 10px 25px rgba(229, 9, 20, 0.2);
         }
         .skill img {
             height: 24px;
             width: 24px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
     </style>
 </head>
@@ -85,7 +116,9 @@
     <main class="container">
         <section class="hero">
             <h1 id="display-name">Hi, I'm <span class="highlight">ABIJITH S PILLAI</span></h1>
-            <p class="subtitle">Web Developer & AI Enthusiast</p>
+            <div class="subtitle-wrapper">
+                <p class="subtitle">Web Developer & AI Enthusiast</p>
+            </div>
             <p class="tagline">
                 Welcome to my digital portfolio. Here you can explore my projects, and reach out to me directly.
             </p>
@@ -97,8 +130,8 @@
 
         <section id="about" class="about">
             <h2 data-aos="fade-up">About Me</h2>
-            <div class="card" data-aos="fade-up" style="margin-top:12px; text-align: left;">
-                <p style="margin:0; color:var(--muted)">
+            <div class="card glass-card" data-aos="fade-up" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                <p>
                     As an aspiring software developer currently pursuing a B.Tech in Computer Science and Engineering, I'm driven by a passion for continuous learning and applying new technologies to solve real-world problems. My hands-on experience includes foundational languages like C, Python, and Java, alongside web development with HTML, CSS, and JavaScript. I'm actively seeking opportunities to contribute to challenging projects and grow as a developer.
                 </p>
             </div>
@@ -167,6 +200,7 @@
         once: true,
       });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="3d-bg.js"></script>
     <script src="script.js"></script>

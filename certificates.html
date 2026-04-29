@@ -17,16 +17,11 @@
         .card {
             display: flex;
             flex-direction: column;
-            background: #1a1a1a;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            padding: 0;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(255, 76, 76, 0.2);
         }
 
         .card img {
@@ -250,6 +245,11 @@
                 const c = doc.data();
                 const card = document.createElement("div");
                 card.classList.add("card");
+                card.setAttribute("data-tilt", "");
+                card.setAttribute("data-tilt-max", "5");
+                card.setAttribute("data-tilt-speed", "400");
+                card.setAttribute("data-tilt-glare", "true");
+                card.setAttribute("data-tilt-max-glare", "0.2");
 
                 const isPdf = c.image && c.image.toLowerCase().includes('.pdf');
                 let displayUrl;
@@ -291,10 +291,16 @@
             if (!hasWithout) {
                 withoutContainer.innerHTML = '<p>No certificates without credentials found.</p>';
             }
+            
+            // Initialize VanillaTilt if loaded after elements
+            if (window.VanillaTilt) {
+                VanillaTilt.init(document.querySelectorAll(".card"));
+            }
         }
 
         loadCertificates();
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="3d-bg.js"></script>
 </body>
