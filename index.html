@@ -15,6 +15,24 @@
             text-align: center;
             padding: 100px 0 80px;
         }
+        .hero-avatar-wrapper {
+            margin-bottom: 20px;
+            display: inline-block;
+            position: relative;
+        }
+        .hero-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--red);
+            box-shadow: 0 0 25px rgba(229, 9, 20, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hero-avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(229, 9, 20, 0.6);
+        }
         .hero h1 {
             font-size: clamp(2.5rem, 8vw, 4.5rem);
             margin-bottom: 12px;
@@ -115,6 +133,9 @@
 
     <main class="container">
         <section class="hero">
+            <div class="hero-avatar-wrapper" data-aos="zoom-in">
+                <img src="mypicture.png" alt="Abijith S Pillai" class="hero-avatar">
+            </div>
             <h1 id="display-name">Hi, I'm <span class="highlight">ABIJITH S PILLAI</span></h1>
             <div class="subtitle-wrapper">
                 <p class="subtitle">Web Developer & AI Enthusiast</p>
