@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,11 +16,13 @@
             text-align: center;
             padding: 100px 0 80px;
         }
+
         .hero-avatar-wrapper {
             margin-bottom: 20px;
             display: inline-block;
             position: relative;
         }
+
         .hero-avatar {
             width: 150px;
             height: 150px;
@@ -29,10 +32,12 @@
             box-shadow: 0 0 25px rgba(229, 9, 20, 0.4);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .hero-avatar:hover {
             transform: scale(1.05);
             box-shadow: 0 0 40px rgba(229, 9, 20, 0.6);
         }
+
         .hero h1 {
             font-size: clamp(2.5rem, 8vw, 4.5rem);
             margin-bottom: 12px;
@@ -40,15 +45,18 @@
             font-weight: 800;
             letter-spacing: -1px;
         }
+
         .hero h1 .highlight {
             background: linear-gradient(135deg, #e50914, #ff5e62);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 30px rgba(229, 9, 20, 0.3);
         }
+
         .subtitle-wrapper {
             display: inline-block;
         }
+
         .hero .subtitle {
             font-size: clamp(1.2rem, 4vw, 1.75rem);
             font-weight: 600;
@@ -59,14 +67,29 @@
             border-right: 3px solid var(--red);
             animation: typing 3s steps(30, end), blink-caret .75s step-end infinite;
         }
+
         @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
         }
+
         @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--red); }
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: var(--red);
+            }
         }
+
         .hero .tagline {
             font-size: 1.1rem;
             color: var(--muted);
@@ -75,11 +98,13 @@
             line-height: 1.6;
             font-weight: 300;
         }
+
         .cta {
             display: flex;
             justify-content: center;
             gap: 20px;
         }
+
         .skills-pills {
             display: flex;
             flex-wrap: wrap;
@@ -87,6 +112,7 @@
             gap: 15px;
             margin-top: 30px;
         }
+
         .skill {
             display: flex;
             align-items: center;
@@ -103,19 +129,22 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
+
         .skill:hover {
             transform: translateY(-5px) scale(1.05);
             background: rgba(229, 9, 20, 0.1);
             border-color: rgba(229, 9, 20, 0.5);
             box-shadow: 0 10px 25px rgba(229, 9, 20, 0.2);
         }
+
         .skill img {
             height: 24px;
             width: 24px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         }
     </style>
 </head>
+
 <body>
     <canvas id="bg-canvas"></canvas>
     <header>
@@ -150,11 +179,30 @@
             </div>
         </section>
 
+        <section id="terminal-section" class="terminal-section" data-aos="fade-up">
+            <div class="terminal-window" data-tilt data-tilt-max="2" data-tilt-speed="400">
+                <div class="terminal-header">
+                    <span class="btn-close"></span>
+                    <span class="btn-min"></span>
+                    <span class="btn-max"></span>
+                    <span class="terminal-title">guest@portfolio:~</span>
+                </div>
+                <div class="terminal-body">
+                    <p class="terminal-prompt"><span class="user">guest@abijith</span>:<span class="dir">~</span>$ <span class="typing-text"></span><span class="cursor">&nbsp;</span></p>
+                </div>
+            </div>
+        </section>
+
         <section id="about" class="about">
             <h2 data-aos="fade-up">About Me</h2>
-            <div class="card glass-card" data-aos="fade-up" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+            <div class="card glass-card" data-aos="fade-up" data-tilt data-tilt-max="5" data-tilt-speed="400"
+                data-tilt-glare="true" data-tilt-max-glare="0.2">
                 <p>
-                    As an aspiring software developer currently pursuing a B.Tech in Computer Science and Engineering, I'm driven by a passion for continuous learning and applying new technologies to solve real-world problems. My hands-on experience includes foundational languages like C, Python, and Java, alongside web development with HTML, CSS, and JavaScript. I'm actively seeking opportunities to contribute to challenging projects and grow as a developer.
+                    As an aspiring software developer currently pursuing a B.Tech in Computer Science and Engineering,
+                    I'm driven by a passion for continuous learning and applying new technologies to solve real-world
+                    problems. My hands-on experience includes foundational languages like C, Python, and Java, alongside
+                    web development with HTML, CSS, and JavaScript. I'm actively seeking opportunities to contribute to
+                    challenging projects and grow as a developer.
                 </p>
             </div>
         </section>
@@ -192,7 +240,7 @@
             </div>
         </section>
 
-         <section id="skills">
+        <section id="skills">
             <h2 data-aos="fade-up">Key Skills</h2>
             <div class="skills-pills" data-aos="fade-up">
                 <div class="skill" data-aos="zoom-in">
@@ -250,14 +298,15 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      AOS.init({
-        duration: 800,
-        once: true,
-      });
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="3d-bg.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
