@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         map: texture,
         transparent: true,
         opacity: 0.3,
-        color: 0xe50914, // Themed Red
+        color: 0x00a8ff, // Bright Blue
         blending: THREE.AdditiveBlending,
         depthWrite: false
     });
