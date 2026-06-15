@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     // Particles Data
-    const particlesCount = 200;
+    const particlesCount = 80;
     const positions = new Float32Array(particlesCount * 3);
     const velocities = [];
 
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         size: 2.5,
         map: texture,
         transparent: true,
-        opacity: 0.8,
+        opacity: 0.3,
         color: 0xe50914, // Themed Red
         blending: THREE.AdditiveBlending,
         depthWrite: false
@@ -57,16 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particles);
 
-    // Lines for connecting particles
-    const linesMaterial = new THREE.LineBasicMaterial({
-        color: 0xe50914,
-        transparent: true,
-        opacity: 0.15
-    });
-    
-    // We update this geometry every frame
-    const linesMesh = new THREE.LineSegments(new THREE.BufferGeometry(), linesMaterial);
-    scene.add(linesMesh);
+
 
     // Mouse Interaction
     let mouseX = 0;
@@ -108,26 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         particles.geometry.attributes.position.needsUpdate = true;
 
-        // Calculate line connections
-        const linePositions = [];
-        for (let i = 0; i < particlesCount; i++) {
-            for (let j = i + 1; j < particlesCount; j++) {
-                const dx = positions[i * 3] - positions[j * 3];
-                const dy = positions[i * 3 + 1] - positions[j * 3];
-                const dz = positions[i * 3 + 2] - positions[j * 3];
-                const distSq = dx*dx + dy*dy + dz*dz;
 
-                // If particles are close enough, draw a line
-                if (distSq < 1500) {
-                    linePositions.push(
-                        positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2],
-                        positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]
-                    );
-                }
-            }
-        }
-        
-        linesMesh.geometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
 
         // Camera movement based on mouse
         const targetX = mouseX * 0.05;
