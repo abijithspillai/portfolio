@@ -4,7 +4,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Home — Portfolio</title>
+    <title>Abijith S Pillai | Web Developer Portfolio</title>
+    <meta name="description" content="Welcome to the digital portfolio of Abijith S Pillai, an aspiring web developer and B.Tech CSE student specializing in Python, Java, and Web Technologies.">
+    <link rel="canonical" href="https://abijithspillai.vip/" />
+    <meta property="og:title" content="Abijith S Pillai | Web Developer Portfolio" />
+    <meta property="og:description" content="Welcome to the digital portfolio of Abijith S Pillai, an aspiring web developer and B.Tech CSE student." />
+    <meta property="og:url" content="https://abijithspillai.vip/" />
+    <meta property="og:image" content="https://abijithspillai.vip/mypicture.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Abijith S Pillai | Web Developer Portfolio" />
+    <meta name="twitter:description" content="Welcome to the digital portfolio of Abijith S Pillai." />
+    <meta name="twitter:image" content="https://abijithspillai.vip/mypicture.png" />
     <link rel="icon" type="image/png" href="https://img.icons8.com/?size=100&id=2797&format=png&color=000000">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -296,17 +307,19 @@
         <div class="muted">&copy; <span id="year"></span> abijithspillai</div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="3d-bg.js" defer></script>
+    <script src="script.js" defer></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true,
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                once: true,
+            });
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="3d-bg.js"></script>
-    <script src="script.js"></script>
 </body>
 
 </html>
