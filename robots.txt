@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://abijithspillai.vip/sitemap.xml
+Sitemap: https://abijithspillai.vercel.app/sitemap.xml

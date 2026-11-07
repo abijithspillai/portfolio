@@ -1,0 +1,17 @@
+# Archives & compressed files
+*.7z
+*.zip
+*.tar.gz
+*.rar
+
+# Environment & secrets
+.env
+.env.*
+*.pem
+*.key
+*.cert
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
