@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff4155" />
+      <stop offset="100%" stop-color="#e50914" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#e50914" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#0b0d14" />
+  <rect width="62" height="62" x="1" y="1" rx="15" fill="none" stroke="#222838" stroke-width="1.5" />
+  <!-- Roof -->
+  <path d="M12 29 L32 13 L52 29" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Chimney -->
+  <path d="M42 20 V15 H47 V24" fill="none" stroke="url(#redGrad)" stroke-width="3" stroke-linecap="round" />
+  <!-- House Body -->
+  <path d="M18 28 V47 C18 49.5 20 51 22.5 51 H41.5 C44 51 46 49.5 46 47 V28" fill="#121622" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Door / Hearth (Accent Red) -->
+  <rect x="27" y="34" width="10" height="17" rx="2.5" fill="url(#redGrad)" filter="url(#glow)" />
+</svg>

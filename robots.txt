@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://abijithspillai.vercel.app/sitemap.xml
