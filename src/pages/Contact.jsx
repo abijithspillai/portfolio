@@ -1,64 +1,62 @@
 import { useEffect, useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
 import { Send, CheckCircle2 } from "lucide-react";
 import SocialDock from "../components/SocialDock";
 
 export default function Contact() {
   const formRef = useRef(null);
   const [sending, setSending] = useState(false);
-  const [message, setMessage] = useState(null); // { type: 'success' | 'error', text: string }
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     document.title = "Contact - Abijith S Pillai";
-
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    if (publicKey) {
-      emailjs.init(publicKey);
-    }
 
     return () => {
       document.title = "Abijith S Pillai | Web Developer Portfolio";
     };
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
     setMessage(null);
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const form = formRef.current;
+    const payload = {
+      name: form.from_name.value.trim(),
+      email: form.reply_to.value.trim(),
+      message: form.message.value.trim(),
+      _gotcha: form._gotcha ? form._gotcha.value : "",
+    };
 
-    if (!serviceId || !templateId) {
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong while sending. Please try again later.");
+      }
+
+      setMessage({
+        type: "success",
+        text: "Thanks for reaching out! Your message was sent successfully.",
+      });
+      form.reset();
+    } catch (error) {
       setMessage({
         type: "error",
-        text: "Email service is not configured. Please check environment variables.",
+        text: error.message || "Something went wrong while sending. Please try again later.",
       });
+      console.error("Email submission error:", error);
+    } finally {
       setSending(false);
-      return;
     }
-
-    emailjs
-      .sendForm(serviceId, templateId, formRef.current)
-      .then(
-        () => {
-          setMessage({
-            type: "success",
-            text: "Thanks for reaching out! Your message was sent successfully.",
-          });
-          formRef.current.reset();
-        },
-        (error) => {
-          setMessage({
-            type: "error",
-            text: "Something went wrong while sending. Please try again later.",
-          });
-          console.error("EmailJS error:", error);
-        }
-      )
-      .finally(() => {
-        setSending(false);
-      });
   };
 
   return (
@@ -73,7 +71,6 @@ export default function Contact() {
       </div>
 
       <div className="contact-layout-grid">
-        {/* Left: Connect & Socials */}
         <div className="contact-info-column" data-aos="fade-right">
           <div className="card contact-hub-card">
             <h3>Let's Connect</h3>
@@ -88,12 +85,20 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Right: Clean, Natural Form */}
         <div className="contact-form-column" data-aos="fade-left">
           <div className="card contact-form-card">
             <h3>Send a Message</h3>
 
             <form id="contact-form" ref={formRef} onSubmit={handleSubmit} className="natural-contact-form">
+              <input
+                type="text"
+                name="_gotcha"
+                style={{ display: "none" }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
               <div className="form-field-group">
                 <label htmlFor="name">Name</label>
                 <input

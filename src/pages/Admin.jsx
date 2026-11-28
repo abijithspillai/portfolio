@@ -15,9 +15,6 @@ import {
 import { auth, db } from "../firebase";
 import { AnimatedThemeToggler } from "@/registry/magicui/animated-theme-toggler";
 
-const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
-
 function formatMonthYear(isoDate) {
   if (!isoDate || !isoDate.includes("-")) return isoDate || "N/A";
   const [year, month] = isoDate.split("-");
@@ -158,20 +155,40 @@ export default function Admin() {
     }
   };
 
-  // Cloudinary Upload
   const uploadToCloudinary = async (file) => {
-    if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_UPLOAD_PRESET) {
-      throw new Error("Cloudinary credentials are not configured in environment variables.");
+    if (!currentUser) {
+      throw new Error("Authentication required for upload.");
     }
-    showNotification("Uploading asset to Cloudinary...", "info");
+    showNotification("Authorizing and uploading asset to Cloudinary...", "info");
+
+    const idToken = await currentUser.getIdToken();
+    const signResponse = await fetch("/api/sign-cloudinary", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${idToken}`,
+      },
+    });
+
+    const signData = await signResponse.json().catch(() => ({}));
+    if (!signResponse.ok) {
+      throw new Error(signData.error || "Failed to obtain upload signature.");
+    }
+
+    const { signature, timestamp, apiKey, cloudName, folder } = signData;
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+    formData.append("api_key", apiKey);
+    formData.append("timestamp", timestamp);
+    formData.append("signature", signature);
+    if (folder) {
+      formData.append("folder", folder);
+    }
 
     const isImageOrPdf = file.type.startsWith("image/") || file.type === "application/pdf";
     const resourceType = isImageOrPdf ? "image" : "raw";
-    const uploadUrl = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${resourceType}/upload`;
+    const uploadUrl = `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`;
 
     const response = await fetch(uploadUrl, {
       method: "POST",
